@@ -1,0 +1,14 @@
+name: Supabase Keep Alive
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 9 */3 * *'
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping
+        env:
+          URL: ${{ https://ppjlkdgqrwsyuhcxuahw.supabase.co }}
+          KEY: ${{ eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InBwamxrZGdxcndzeXVoY3h1YWh3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODc4OTQzMDYsImV4cCI6MjEwMzQ3MDMwNn0.GmD5A_Eadjpt5FK4XgAqrbwnw5qooIMn5M_qpOfMZIM }}
+        run: curl -s "${URL}/rest/v1/" -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}"
