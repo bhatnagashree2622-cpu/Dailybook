@@ -9,7 +9,7 @@ jobs:
     steps:
       - name: Ping
         env:
-          URL: ${{ secrets.SUPABASE_URL }}
+          URL: ${{ https://ppjlkdgqrwsyuhcxuahw.supabase.co }}
           KEY: ${{ secrets.SUPABASE_ANON_KEY }}
         run: |
           echo "URL is: $URL"
