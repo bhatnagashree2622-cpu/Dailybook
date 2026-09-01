@@ -1,0 +1,21 @@
+name: Supabase Keep Alive
+on:
+  schedule:
+    - cron: '0 9 */3 * *'
+  workflow_dispatch:
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Ping Supabase
+        env:
+          URL: ${{ secrets.SUPABASE_URL }}
+          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          STATUS=$(curl -s -o /dev/null -w "%{http_code}" "${URL}/rest/v1/" -H "apikey: ${KEY}" -H "Authorization: Bearer ${KEY}")
+          echo "Status: $STATUS"
+          if [ "$STATUS" -ge 200 ] && [ "$STATUS" -lt 400 ]; then
+            echo "Supabase is alive!"
+          else
+            exit 1
+          fi
