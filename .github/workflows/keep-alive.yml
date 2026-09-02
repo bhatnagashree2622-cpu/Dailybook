@@ -8,4 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Ping
-        run: curl "https://ppjlkdgqrwsyuhcxuahw.supabase.co/rest/v1/" -H "apikey: ${{ secrets.SUPABASE_ANON_KEY }}"
+        env:
+          KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          curl "https://ppjlkdgqrwsyuhcxuahw.supabase.co/rest/v1/" -H "apikey: $KEY"
